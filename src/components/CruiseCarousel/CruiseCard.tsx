@@ -4,20 +4,24 @@ import { useRouter } from 'next/navigation';
 import { BsFillStarFill } from 'react-icons/bs';
 import './CruiseCard.css'
 
-const CruiseCard = (data:CruiseCardType) => {
+const CruiseCard = (data:any) => {
     const router=useRouter();
-    const city='mumbai'
-    const { _id, title,imageUrl, rating,type } = data;
+    // const city='mumbai'
+    const {_id, title, genre, rating, portraitImgUrl } = data.Cruise;
+    const { city } = data.user;
+        console.log(city)
+
+
 
   return (
     <div className='CruiseCard'
     onClick={()=>{
-        router.push(`/${city}/cruise/${title}`)
+        router.push(`/${city}/cruise/${_id}`)
     }} 
    
     >
     <div className='cruiseimg'
-    style={{backgroundImage:`url(${imageUrl})`
+    style={{backgroundImage:`url(${portraitImgUrl})`
     }}>
         <p className='rating'>
             <BsFillStarFill className='star'/>&nbsp;&nbsp;
@@ -30,7 +34,7 @@ const CruiseCard = (data:CruiseCardType) => {
             {title}
         </p>
         <p className='type'>
-            {type}
+        {genre.join(", ")}
         </p>
     </div>
       

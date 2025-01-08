@@ -63,7 +63,48 @@ export default function Signup() {
             return;
         }
 
-       
+        fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/auth/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+            .then((res) => {
+                return res.json();
+            })
+            .then((response) => {
+                if (response.ok) {
+                    toast(response.message, {
+                        type: 'success',
+                        position: 'top-right',
+                        autoClose: 2000
+                    })
+                    window.location.href = '/auth/signin'
+                    setFormData(
+                        {
+                            name: '',
+                            email: '',
+                            password: '',
+                            confirmPassword: '',
+                            city: ''
+                        }
+                    )
+                } else {
+                    toast(response.message, {
+                        type: 'error',
+                        position: 'top-right',
+                        autoClose: 2000
+                    });
+                }
+            })
+            .catch((error) => {
+                toast(error.message, {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 2000
+                });
+            })
     }
     return (
         <div className='authout'>
@@ -78,7 +119,6 @@ export default function Signup() {
                             flexDirection: 'column',
                         }}
                         onSubmit={handleSubmit}
-                        
                     >
                         <div className="forminput_cont">
                             <label>Name</label>
@@ -126,6 +166,20 @@ export default function Signup() {
                             />
                             {errors.confirmPassword && (
                                 <span className="formerror">{errors.confirmPassword}</span>
+                            )}
+                        </div>
+
+                        <div className="forminput_cont">
+                            <label>City</label>
+                            <input
+                                type="text"
+                                placeholder="Enter Your City"
+                                name="city"
+                                value={formData.city}
+                                onChange={handleChange}
+                            />
+                            {errors.city && (
+                                <span className="formerror">{errors.city}</span>
                             )}
                         </div>
 

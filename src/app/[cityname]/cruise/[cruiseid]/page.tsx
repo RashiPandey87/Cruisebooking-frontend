@@ -9,109 +9,69 @@ import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import CelebCard from '@/components/CelebCard/CelebCard';
-import { usePathname } from 'next/navigation';
+import { usePathname,useParams  } from 'next/navigation';
 import Link from 'next/link';
 
 
 const CruisePage = () => {
     const pathname = usePathname()
+    const { cruiseid } = useParams()
+    
+    const [cruise, setCruise] = React.useState<any>(null)
+    console.log("$$$$$$",cruiseid);
 
-    const cruise={
-        wideposter:"https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/pushpa-the-rule--part-2-et00356724-1729771762.jpg",
-        portraitposter:"https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/pushpa-the-rule--part-2-et00356724-1729771762.jpg",
-        title:"",
-        rating:8.5,
-        halls:["2D","3D"],
-        languages:['Tamil','Telugu','Hindi'],
-       duration:'2h 15m',
-       type:'Action/Thriller',
-       releasedate:'Dec 3 2024',
-       cast:[
-        {
-            _id:"1",
-            name:'Allu Arjun',
-            role:'Actor',
-            imageUrl:'https://in.bmscdn.com/iedb/artist/images/website/poster/large/allu-arjun-125-03-10-2016-01-55-06.jpg'
+    const getCruise = async () => {
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/cruise/cruises/${cruiseid}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            });
+            const data = await response.json();
+            console.log("Full API Response:", data); // Log the full response
+            if (data.ok) {
+                console.log("Setting cruise data:", data.data);
+                setCruise(data.data);
+            } else {
+                console.error("API Error:", data.message);
+            }
+        } catch (error) {
+            console.error("Fetch error:", error);
+        }
+    };
+    
+    
+   
 
-
-        },
-        {
-            _id:"1",
-            name:'Allu Arjun',
-            role:'Actor',
-            imageUrl:'https://in.bmscdn.com/iedb/artist/images/website/poster/large/allu-arjun-125-03-10-2016-01-55-06.jpg'
-
-
-        },
-        {
-            _id:"1",
-            name:'Allu Arjun',
-            role:'Actor',
-            imageUrl:'https://in.bmscdn.com/iedb/artist/images/website/poster/large/allu-arjun-125-03-10-2016-01-55-06.jpg'
-
-
-        },
-        {
-            _id:"1",
-            name:'Allu Arjun',
-            role:'Actor',
-            imageUrl:'https://in.bmscdn.com/iedb/artist/images/website/poster/large/allu-arjun-125-03-10-2016-01-55-06.jpg'
-
-
-        },
-        {
-            _id:"1",
-            name:'Allu Arjun',
-            role:'Actor',
-            imageUrl:'https://in.bmscdn.com/iedb/artist/images/website/poster/large/allu-arjun-125-03-10-2016-01-55-06.jpg'
-
-
-        },
-        {
-            _id:"1",
-            name:'Allu Arjun',
-            role:'Actor',
-            imageUrl:'https://in.bmscdn.com/iedb/artist/images/website/poster/large/allu-arjun-125-03-10-2016-01-55-06.jpg'
-
-
-        },
-       ] ,  
-       crew:[
-        {
-          _id:'1',
-          name:'Atlee',
-          role:'Director',
-          imageUrl:'https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/sukumar-bandreddi-2278-1671448479.jpg',
-        },
-        {
-            _id:'1',
-            name:'Atlee',
-            role:'Director',
-            imageUrl:'https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/sukumar-bandreddi-2278-1671448479.jpg',
-          },
-          {
-            _id:'1',
-            name:'Atlee',
-            role:'Director',
-            imageUrl:'https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/sukumar-bandreddi-2278-1671448479.jpg',
-          },
-       ] ,
-       about:' A high-octane Action thriller  that outline emotional journey',
-
-
-
-
-    }
+    React.useEffect(() => {
+        console.log("Cruise state updated:", cruise);
+    }, [cruise]); // Logs whenever `cruise` state is updated
+    
+    React.useEffect(() => {
+        if (cruiseid) {
+            console.log("Fetching cruise data for ID:", cruiseid);
+            getCruise(); // Fetch cruise data when `cruiseid` changes
+        }
+    }, [cruiseid]); // Trigger on `cruiseid` change
+    
+    
+    
+        
   return (
-    <div className='cruisepage'>
+    <>
+    {
+        cruise &&
+        <div className='cruisepage'>
       <div className='c1' style={{
-        backgroundImage:`url(${cruise.wideposter})`
+        backgroundImage:`url(${cruise.landscapeImgUrl})`
       }}>
         <div className='c11'>
             <div className='left'>
                 <div className='cruise_poster'
                 style={{
-                    backgroundImage:`url(${cruise.portraitposter})`
+                    backgroundImage:`url(${cruise.portraitImgUrl || 'https://via.placeholder.com/200x300'})`
                 }}>
                     <p>In cinemas</p>
 
@@ -124,37 +84,16 @@ const CruisePage = () => {
             <BsFillStarFill className='star'/>&nbsp;&nbsp;
             {cruise.rating}/10
         </p>
-        <div className='halls_languages'>
-                                <p className='halls'>
-                                    {
-                                        cruise.halls.map((hall, index) => {
-                                            return (
-                                                <span key={index}>{hall} </span>
-                                            )
-                                        })
-                                    }
-                                </p>
-                                <p className='languages'>
-                                    {cruise.languages.map((language, index) => {
-                                        return (
-                                            <span key={index}>{language} </span>
-                                        )
-                                    })}
-                                </p>
-                            </div>
-                            <p className='duration_type_releasedat'>
+    
+        <p className='duration_type_releasedat'>
                                         <span className='duration'>
                                             {cruise.duration}
                                         </span>
                                         <span>•</span>
                                         <span className='type'>
-                                           {cruise.type}
+                                            {cruise.genre.join(', ')}
                                         </span>
-                                        <span>•</span>
-                                <span className='releasedat'>
-                                    {cruise.releasedate}
-                                </span>
-                                    </p>
+                                        </p>
                                     <Link
                                         href={`${pathname}/buytickets`}
                                         className='linkstylenone'
@@ -170,11 +109,15 @@ const CruisePage = () => {
 
       </div>
       <div className='c2'>
-        <h1>About the Cruise</h1>
-        <p> {cruise.about} </p>
-        <div className='line'></div>
-        <h1>Cast</h1>
-        <Swiper
+                        <h1>About the Movie</h1>
+                        <p>{cruise.description}</p>
+                        {
+                            cruise.cast.length>0 &&
+                            <div className='circlecardslider'>
+                                <div className='line'></div>
+
+                                <h1>Cast</h1>
+                                <Swiper
                                     slidesPerView={1}
                                     spaceBetween={1}
                                     pagination={{
@@ -202,19 +145,24 @@ const CruisePage = () => {
                                     className="mySwiper"
                                 >
                                     {
-                                        cruise.cast.map((cast,index) => {
+                                        cruise.cast.map((cast, index) => {
                                             return (
-                                                <SwiperSlide key={index} >
-                                                    <CelebCard {...cast}/>
+                                                <SwiperSlide key={index}>
+                                                    <CelebCard {...cast} />
                                                 </SwiperSlide>
                                             )
                                         })
                                     }
                                 </Swiper>
-        <div className="circlecardslider"></div>
-        <div className='line'></div>
-        <h1>Crew</h1>
-        <Swiper
+                            </div>
+                        }
+                        {
+                            cruise.crew.length>0 &&
+                            <div className='circlecardslider'>
+                                <div className='line'></div>
+
+                                <h1>Crew</h1>
+                                <Swiper
                                     slidesPerView={1}
                                     spaceBetween={1}
                                     pagination={{
@@ -242,22 +190,27 @@ const CruisePage = () => {
                                     className="mySwiper"
                                 >
                                     {
-                                        cruise.crew.map((crew,index) => {
+                                        cruise.crew.map((cast, index) => {
                                             return (
-                                                <SwiperSlide key={index} >
-                                                    <CelebCard {...crew}/>
+                                                <SwiperSlide key={index}>
+                                                    <CelebCard {...cast} />
                                                 </SwiperSlide>
                                             )
                                         })
                                     }
                                 </Swiper>
-        <div className="circlecardslider"></div>
-        <div className='line'></div>
-        <h1>Your might also like</h1>
-        <CruiseCarousel/>
-      </div>
+                            </div>
+                        }
+                        <div className='line'></div>
+                        <h1>Your might also like</h1>
+                        <CruiseCarousel />
+                    </div>
+
     </div>
+    }
+    </>
   )
 }
+
 
 export default CruisePage
