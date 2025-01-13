@@ -1,50 +1,113 @@
-/* General Swiper styles for all devices */
+/* General Styles */
 .mySwiper {
-    width: 100%;
-    height: auto; /* Allow dynamic height */
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .mySwiper .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.mySwiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mySwiper img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.mySwiper img:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Navigation Button Styles */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Pagination Styles */
+.swiper-pagination {
+  bottom: 10px !important;
+}
+
+.swiper-pagination-bullet {
+  background: #fff;
+  opacity: 0.8;
+}
+
+.swiper-pagination-bullet-active {
+  background: #ff5722; /* Highlight active bullet */
+  opacity: 1;
+}
+
+/* Responsive Design */
+
+/* Small screens: 468px and below */
+@media (max-width: 468px) {
   .mySwiper img {
-    width: 100%;
-    height: auto; /* Prevent distortion */
-    object-fit: cover;
+    height: 200px; /* Smaller image height for very small screens */
+    object-fit: contain; /* Ensure the entire image is visible */
   }
-  
-  /* Responsive design for small screens */
-  @media only screen and (max-width: 768px) {
-    .mySwiper {
-      height: 50vh; /* Adjust slider height for small screens */
-    }
-  
-    .mySwiper .swiper-slide img {
-      object-fit: contain; /* Ensure images fit without cropping */
-      max-height: 100%; /* Fit within the slider container */
-    }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 25px;
+    height: 25px;
   }
-  
-  /* Further adjustments for very small screens (mobile phones) */
-  @media only screen and (max-width: 480px) {
-    .mySwiper {
-      height: 45vh; /* Smaller height for phones */
-    }
-  
-    .mySwiper .swiper-slide img {
-      object-fit: contain; /* Ensure no cropping */
-      padding: 0 10px; /* Add padding to prevent image cutoff */
-    }
-  
-    /* Adjust font sizes for any text within the banner */
-    .banner-text {
-      font-size: 12px; /* Reduce text size for better readability */
-      padding: 5px;
-    }
+
+  .swiper-pagination {
+    bottom: 5px !important; /* Move pagination higher */
   }
-  
+
+  .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+/* Small screens: 469px to 768px */
+@media (min-width: 469px) and (max-width: 768px) {
+  .mySwiper img {
+    height: 300px; /* Adjust image height for small screens */
+    object-fit: contain;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 30px;
+    height: 30px;
+  }
+
+  .swiper-pagination {
+    bottom: 7px !important; /* Slightly higher pagination */
+  }
+}
+
+/* Medium screens: 769px to 1200px */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .mySwiper img {
+    height: 400px; /* Adjust image height for medium screens */
+  }
+}
+
+/* Large screens: 1200px and above */
+@media (min-width: 1200px) {
+  .mySwiper img {
+    height: 500px; /* Adjust image height for larger screens */
+  }
+}
