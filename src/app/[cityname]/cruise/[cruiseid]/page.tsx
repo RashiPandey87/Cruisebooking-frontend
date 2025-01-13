@@ -73,7 +73,7 @@ const CruisePage = () => {
                 style={{
                     backgroundImage:`url(${cruise.portraitImgUrl || 'https://via.placeholder.com/200x300'})`
                 }}>
-                    <p>In cinemas</p>
+                    <p>In Kashi</p>
 
                 </div>
                 <div className='cruise_details'>
@@ -98,7 +98,7 @@ const CruisePage = () => {
                                         href={`${pathname}/buytickets`}
                                         className='linkstylenone'
                                     >
-                                        <button className='bookbtn'>Book Tickets</button>
+                                        <button className='bookbtn'>BookTickets</button>
                                     </Link>
                 </div>
             </div>
@@ -109,7 +109,7 @@ const CruisePage = () => {
 
       </div>
       <div className='c2'>
-                        <h1>About the Movie</h1>
+                        <h1>About the Cruise</h1>
                         <p>{cruise.description}</p>
                         {
                             cruise.cast.length>0 &&

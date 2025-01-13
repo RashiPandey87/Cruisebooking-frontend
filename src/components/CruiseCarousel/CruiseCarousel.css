@@ -1,0 +1,19 @@
+.sliderout {
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .sliderout {
+        margin-top: 20px; /* Reduce the top margin for smaller screens */
+        margin-left: 5px; /* Reduce the left margin for smaller screens */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .sliderout {
+        margin-top: 10px; /* Further reduce the top margin for phone screens */
+        margin-left: 0; /* Remove the left margin for the smallest screens */
+    }
+}

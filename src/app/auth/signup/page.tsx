@@ -6,7 +6,7 @@ import Navbar from '@/components/Navbar/Navbar';
 import '../auth.css';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
-import logo from '@/assets/logo (1).png';
+import logo from '@/assets/logo(1).png';
 
 
 interface FormData {

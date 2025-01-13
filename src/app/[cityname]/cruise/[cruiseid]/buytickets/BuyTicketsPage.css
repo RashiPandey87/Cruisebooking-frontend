@@ -1,62 +1,121 @@
-.buytickets .head{
-    background-color: var(--col2);
-    padding: 20px;
-}
-.buytickets{
+.buytickets {
     background-color: rgb(228, 228, 228);
     min-height: 100vh;
     width: 100%;
 }
-.buytickets .s1{
-    background-color: white;
+
+.buytickets .head {
+    background-color: var(--col2);
+    padding: 20px;
 }
-.buytickets .head h1{
+
+.buytickets .head h1 {
     color: white;
     font-size: 35px;
     font-weight: 600;
 }
 
-
-.buytickets .head h3{
+.buytickets .head h3 {
     color: gray;
     font-size: 13px;
     font-weight: 600;
-
     border: 1px solid gray;
     padding: 5px 20px;
     border-radius: 25px;
     width: fit-content;
 }
 
-.buytickets .screens{
+.buytickets .screens {
     width: 90%;
     margin: 20px auto;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
     background-color: white;
     padding: 20px;
     border-radius: 10px;
 }
 
-.buytickets .screens .screen{
+.buytickets .screens .screen {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 10px 0px;
     padding: 10px;
-    /* border-radius: 10px; */
     cursor: pointer;
     transition: all 0.3s ease;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-.buytickets .screens .screen:last-child{
+
+.buytickets .screens .screen:last-child {
     border-bottom: none;
 }
-.buytickets .screens .screen h2{
+
+.buytickets .screens .screen h2 {
     font-size: 20px;
     font-weight: 600;
 }
 
-.buytickets .screens .screen h3{
+.buytickets .screens .screen h3 {
     font-size: 15px;
     font-weight: 600;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .buytickets .head {
+        padding: 15px;
+    }
+
+    .buytickets .head h1 {
+        font-size: 28px; /* Reduce font size for smaller screens */
+    }
+
+    .buytickets .head h3 {
+        font-size: 12px; /* Reduce font size */
+        padding: 5px 15px; /* Adjust padding */
+    }
+
+    .buytickets .screens {
+        padding: 15px; /* Reduce padding */
+    }
+
+    .buytickets .screens .screen h2 {
+        font-size: 18px; /* Slightly smaller text */
+    }
+
+    .buytickets .screens .screen h3 {
+        font-size: 13px; /* Adjust font size */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .buytickets .head {
+        padding: 10px; /* Further reduce padding for small screens */
+    }
+
+    .buytickets .head h1 {
+        font-size: 22px; /* Smaller font size for phones */
+    }
+
+    .buytickets .head h3 {
+        font-size: 11px;
+        padding: 5px 10px;
+    }
+
+    .buytickets .screens {
+        padding: 10px;
+    }
+
+    .buytickets .screens .screen {
+        flex-direction: row; /* Stack items vertically */
+        align-items: flex-start;
+        padding: 10px 5px; /* Adjust padding */
+    }
+
+    .buytickets .screens .screen h2 {
+        font-size: 16px; /* Smaller text */
+    }
+
+    .buytickets .screens .screen h3 {
+        font-size: 12px;
+    }
 }

@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import { CruiseCardType } from '@/types/types';
 import CruiseCard from './CruiseCard';
+import './CruiseCarousel.css';
 
 const CruiseCarousel = () => {
     const [user, setUser] = React.useState<any>(null)

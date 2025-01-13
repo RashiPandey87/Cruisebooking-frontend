@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
+import './HomeSlider.css';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -29,11 +30,10 @@ const HomeSlider = () => {
   return (
     <div>
          <Swiper
-        cssMode={true}
+        slidesPerView={1} // Single slide for small screens
+        spaceBetween={10} // Space between slides
         navigation={true}
-        pagination={true}
-        mousewheel={true}
-        keyboard={true}
+        pagination={{ clickable: true }}
         modules={[Navigation, Pagination, Mousewheel, Keyboard]}
         className="mySwiper"
       >

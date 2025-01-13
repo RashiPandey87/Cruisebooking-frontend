@@ -11,12 +11,18 @@
 
 .selectseatpage .s1 {
     background-color: white;
+   
+}
+.selectseatpage .head{
+    padding: 20px;
 }
 
 .selectseatpage .head h1 {
     color: white;
     font-size: 25px;
     font-weight: 600;
+    margin-bottom: 10px;
+   
 }
 
 
@@ -30,17 +36,6 @@
     border-radius: 25px;
     width: fit-content;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -261,4 +256,117 @@
 .selectseat .timecont .selected{
     border: 2px solid var(--col1);
     color: var(--col1);
+}
+
+/* General Styles */
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .selectseatpage {
+        padding: 10px;
+    }
+
+    .selectseatpage .head h1 {
+        font-size: 20px;
+    }
+
+    .selectseatpage .head h3 {
+        font-size: 11px;
+        padding: 3px 15px;
+    }
+
+    .selectseat {
+        padding: 10px;
+    }
+
+    .selectseat .indicators {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .selectseat .indicators div p {
+        font-size: 10px;
+    }
+
+    .seat-row {
+        gap: 10px;
+    }
+
+    .seat-row p {
+        width: 25px;
+        height: 25px;
+        font-size: 10px;
+    }
+
+    .seats {
+        gap: 5px;
+    }
+
+    .seat-available,
+    .seat-unavailable,
+    .seat-selected {
+        width: 25px;
+        height: 25px;
+    }
+
+    .selectseat .totalcont {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+        width: 100%;
+    }
+
+    .selectseat .totalcont .total {
+        justify-content: flex-start;
+    }
+
+    .selectseat .timecont {
+        flex-wrap: wrap;
+        gap: 5px;
+        justify-content: flex-start;
+    }
+
+    .selectseat .timecont .time {
+        padding: 5px 15px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .selectseatpage .head h1 {
+        font-size: 18px;
+    }
+
+    .selectseatpage .head h3 {
+        font-size: 9px;
+        padding: 2px 10px;
+    }
+
+    .seat-row p {
+        width: 20px;
+        height: 20px;
+        font-size: 8px;
+    }
+
+    .seat-available,
+    .seat-unavailable,
+    .seat-selected {
+        width: 20px;
+        height: 20px;
+    }
+
+    .selectseat .totalcont {
+        padding: 10px;
+    }
+
+    .selectseat .timecont .time {
+        padding: 3px 10px;
+        font-size: 9px;
+    }
+
+    .seat-cols {
+        flex-direction: column;
+        gap: 20px;
+    }
 }

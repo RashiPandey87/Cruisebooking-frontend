@@ -1,0 +1,50 @@
+/* General Swiper styles for all devices */
+.mySwiper {
+    width: 100%;
+    height: auto; /* Allow dynamic height */
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .mySwiper .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .mySwiper img {
+    width: 100%;
+    height: auto; /* Prevent distortion */
+    object-fit: cover;
+  }
+  
+  /* Responsive design for small screens */
+  @media only screen and (max-width: 768px) {
+    .mySwiper {
+      height: 50vh; /* Adjust slider height for small screens */
+    }
+  
+    .mySwiper .swiper-slide img {
+      object-fit: contain; /* Ensure images fit without cropping */
+      max-height: 100%; /* Fit within the slider container */
+    }
+  }
+  
+  /* Further adjustments for very small screens (mobile phones) */
+  @media only screen and (max-width: 480px) {
+    .mySwiper {
+      height: 45vh; /* Smaller height for phones */
+    }
+  
+    .mySwiper .swiper-slide img {
+      object-fit: contain; /* Ensure no cropping */
+      padding: 0 10px; /* Add padding to prevent image cutoff */
+    }
+  
+    /* Adjust font sizes for any text within the banner */
+    .banner-text {
+      font-size: 12px; /* Reduce text size for better readability */
+      padding: 5px;
+    }
+  }
+  
