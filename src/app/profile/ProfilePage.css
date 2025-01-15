@@ -6,8 +6,7 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
-  }
-  
+  }  
   .head {
     text-align: center;
     width: 100%;
@@ -45,7 +44,6 @@
     margin: 0;
     color: var(--col1);
     font-weight: 400;
-
   }
   
   .booking {
@@ -74,4 +72,25 @@
   }
   
   /* Additional styling based on your specific needs */
-  
+  /* Responsive styles for smaller screens */
+@media screen and (max-width: 600px) {
+  .detail {
+    flex: 1 1 100%; /* Each detail will take the full width */
+  }
+
+  .head {
+    font-size: 1rem; /* Slightly smaller font size for headings */
+  }
+
+  .booking {
+    padding: 10px; /* Reduce padding */
+  }
+
+  .booking .detail {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align text to the start */
+  }
+  .booking .detail h3 {
+    margin-right: 0; /* Remove margin for better alignment */
+  }
+}
